@@ -1,7 +1,7 @@
 import React from "react";
 import MBTooltip from "../../Components/Tooltip";
 
-import styles from "./styles.module.scss";
+import styles from "./styles.module.css";
 
 function TooltipExample() {
   return (
