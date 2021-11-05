@@ -20,7 +20,7 @@ const MBTooltipContainer = styled.div`
     box-shadow: 1px 3px #ddd;
     background: #fff;
     z-index: 10;
-
+    text-align: center;
     &.position-top {
       bottom: 100%;
 
@@ -61,10 +61,16 @@ const MBTooltipContainer = styled.div`
       left: 100%;
       top: -10px;
     }
+
+    &.position-left {
+      right: 100%;
+      top: -10px;
+    }
   }
 
   &:hover .mb-tooltip-text {
     visibility: visible;
   }
 `;
+
 export default MBTooltipContainer;

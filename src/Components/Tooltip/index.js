@@ -1,5 +1,7 @@
 import React from "react";
+import classNames from "classnames";
 import MBTooltipContainer from "./MBTooltipContainer";
+import TooltipOnEllipsis from "./TooltipOnEllipsis";
 
 const TOOLTIP_POSITION = {
   TOP: "top",
@@ -32,20 +34,30 @@ const DEFAULT_CONTAINER_STYLE = {
 
 function MBTooltip(props) {
   function renderTooltip() {
-    if (props.disabled) return null;
-    if (!props.tooltip) return null;
+    const tooltipComponent = props.tooltip;
+    if (props.disabled) {
+      return null;
+    }
+    if (!tooltipComponent) {
+      return null;
+    }
     return (
       <div
-        className={`${props.tooltipTextClassName} position-${props.tooltipPosition} float-${props.tooltipFloatPosition} mb-tooltip-text`}
+        className={classNames(
+          "mb-tooltip-text",
+          props.tooltipTextClassName,
+          `position-${props.tooltipPosition}`,
+          `float-${props.tooltipFloatPosition}`
+        )}
       >
-        {props.tooltip}
+        {tooltipComponent}
       </div>
     );
   }
 
   return (
     <MBTooltipContainer
-      class={`${props.className}`}
+      class={classNames(props.className)}
       tooltipPosition={props.tooltipPosition}
       tooltipFloatPosition={props.tooltipFloatPosition}
       style={{ ...props.style, ...DEFAULT_CONTAINER_STYLE }}
@@ -65,10 +77,13 @@ MBTooltip.defaultProps = {
   tooltipFloatPosition: TOOLTIP_FLOAT_POSITION.CENTER,
   style: {},
   tooltipWidth: "120px",
-  tooltipTextClassName: ""
+  tooltipTextClassName: "",
+  tooltip: null
 };
 
 MBTooltip.TOOLTIP_POSITION = TOOLTIP_POSITION;
 MBTooltip.TOOLTIP_FLOAT_POSITION = TOOLTIP_FLOAT_POSITION;
+
+MBTooltip.TooltipOnEllipsis = TooltipOnEllipsis;
 
 export default MBTooltip;

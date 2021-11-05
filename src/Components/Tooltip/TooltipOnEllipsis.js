@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import React from "react";
 import MBTooltipContainer from "./MBTooltipContainer";
 
@@ -17,7 +18,14 @@ function TooltipOnEllipsis(props) {
     if (props.disabled) return null;
     if (!useTooltip) return null;
     return (
-      <div className={`${props.tooltipTextClassName} mb-tooltip-text`}>
+      <div
+        className={classNames(
+          "mb-tooltip-text",
+          props.tooltipTextClassName,
+          `position-${props.tooltipPosition}`,
+          `float-${props.tooltipFloatPosition}`
+        )}
+      >
         {props.children}
       </div>
     );
@@ -25,7 +33,7 @@ function TooltipOnEllipsis(props) {
 
   return (
     <MBTooltipContainer
-      class={`${props.className}`}
+      class={classNames(props.className)}
       tooltipPosition={props.tooltipPosition}
       style={{ width: props.width }}
       tooltipWidth={props.tooltipWidth}
